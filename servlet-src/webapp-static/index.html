@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>PUPIL</title>
+  </head>
+  <script>
+    function popup(url) 
+    {
+      params  = 'width='+screen.width;
+      params += ', height='+screen.height;
+      params += ', top=0, left=0';
+      params += ', fullscreen=yes';
+      params += ', directories=no';
+      params += ', location=no';
+      params += ', menubar=no';
+      params += ', resizable=no';
+      params += ', scrollbars=no';
+      params += ', status=no';
+      params += ', toolbar=no';
+
+      newwin=window.open(url,'pupil', params);
+      if (window.focus) {newwin.focus()}
+    }
+  </script>
+  <body>
+    <h1>PUPIL Projects</h1>
+    You can <a href="javascript:popup('flash/experiment.jsp');">log in as student</a> to run a project, 
+    or <a href="flash/teacher.jsp">log in as teacher</a> to edit a project.<br /><br />
+    To see data, please use the direct links provided by your teacher.
+  </body>
+</html>
+

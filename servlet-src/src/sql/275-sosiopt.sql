@@ -1,0 +1,9 @@
+CREATE TABLE sosiopt (
+  sosiopt_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  optiontxt VARCHAR(250) NOT NULL,
+  keychar VARCHAR(5) NOT NULL,
+  scene_id INTEGER NOT NULL,
+  FOREIGN KEY (scene_id) REFERENCES scene(scene_id) ON DELETE CASCADE
+) ENGINE=INNODB;
+
+
