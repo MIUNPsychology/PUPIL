@@ -1,3 +1,5 @@
+# Dependencies
+
 Place the required JAR files here. They will be automatically used in
 the build process.
 
@@ -8,21 +10,21 @@ JAR files to the directory.
 Or you can use Ivy to do it all automatically. In which case you need
 to install Ivy. 
 
-== Using Ivy
+## Using Ivy
 
 Ivy
 
-== Downloading manually
+## Downloading manually
 
 The following dependencies need to be fulfilled somehow
 
-=== Commons FileUpload
+### Commons FileUpload
 
 This is a plan JAR file, which is available at
 
 https://commons.apache.org/proper/commons-fileupload/download_fileupload.cgi
 
-=== Log4j
+### Log4j
 
 The code uses the log4j 1.x api. You download either an 1.2 release or 
 download a 2.x release with a compatibility wrapper. The recommended
