@@ -1,13 +1,27 @@
 # PUPIL
+
 PUPIL
 
 ## Building
 
-To build PUPIL you need to build a) the flash frontend and b) the java 
-servlet backend.
+To build PUPIL you need to a) download the dependencies, b) build the 
+flash frontend and c) build the java servlet backend.
 
 Each build step will create files indirectory dist/PUPIL. This is a web 
 application suitable for (for example) Tomcat. 
+
+### Downloading dependencies
+
+There is a number of JAR files which need to be placed in lib before
+being able to perform the java build step. 
+
+You can find detailed instructions in the [build README](lib/README.md).
+
+Or, executive summary, run the following commands:
+
+    cd lib
+    ivy
+
 
 ### Building the flash frontend
 
