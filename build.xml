@@ -1,0 +1,163 @@
+<project name="pupil" default="compile" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+
+  <!-- ******* SETTINGS ******* -->
+
+  <property name="javac.debug" value="true" />
+  <property name="dbglvl" value="lines,vars,source" />
+  <property name="build.compiler.pedantic" value="true" />
+  <property name="javasrc" value="servlet-src/src"/>
+  <property name="javastatic" value="servlet-src/webapp-static"/>
+  <property name="distdir" value="dist/PUPIL" />
+  <property name="build" value="${distdir}/WEB-INF/classes"/>
+  <property name="cpargs" value="-Xlint:all,-path" />
+  <property name="libdir" value="lib" />
+  <property name="ivypath" value="" />
+  <property name="flashdist" value="${build}/flash" />
+  <property name="mxmlcarg" value="-static-link-runtime-shared-libraries" />
+
+  <path id="project.class.path">
+    <fileset dir="${libdir}" includes="commons-lang.jar" />
+    <fileset dir="${libdir}" includes="commons-io.jar" />
+    <fileset dir="${libdir}" includes="commons-fileupload.jar" />
+    <fileset dir="${libdir}" includes="mysql-connector-java.jar" />
+    <fileset dir="${libdir}" includes="log4j-core.jar" />
+    <fileset dir="${libdir}" includes="log4j-1.2-api.jar" />
+    <fileset dir="${libdir}" includes="servlet-api*.jar" />
+    <pathelement path="${java.class.path}" />
+  </path>
+
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${build}"/>    
+    <mkdir dir="${flashdist}"/>    
+  </target>
+
+  <target name="clean">
+    <delete dir="${distdir}" />
+  </target>
+
+  <!-- **** UTIL CLASSES ***** -->
+
+  <target name="util" depends="init">
+    <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false">
+      <src path="${javasrc}" />
+      <include name="pupil/util/*.java" />
+      <compilerarg value="${cpargs}"/>
+    </javac>
+  </target>
+
+  <target name="sql" depends="init,util">
+    <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false">
+      <src path="${javasrc}" />
+      <include name="pupil/sql/*.java" />
+      <compilerarg value="${cpargs}"/>
+    </javac>
+  </target>
+
+
+  <!-- ***** PUPIL MAIN ****** -->
+
+  <target name="core" depends="init,util">
+    <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false">
+      <src path="${javasrc}" />
+      <include name="pupil/core/*.java" />
+      <compilerarg value="${cpargs}"/>
+    </javac>
+  </target>
+
+  <target name="commands" depends="init,util,core,sql">
+    <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false">
+      <src path="${javasrc}" />
+      <include name="pupil/command/*.java" />
+      <compilerarg value="${cpargs}"/>
+    </javac>
+  </target>
+
+  <target name="pupilmain" depends="init,util,core,sql,commands">
+    <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false">
+      <src path="${javasrc}" />
+      <include name="pupil/*.java" />
+      <compilerarg value="${cpargs}"/>
+    </javac>
+  </target>
+
+  <target name="pupil-java" depends="init,core,commands,pupilmain"> 
+  </target>
+
+  <target name="pupil-flash" depends="init">
+    <exec executable="mxmlc" dir="flash-src">
+      <arg value="${mxmlcarg}" />
+      <arg value="reaction.as" />
+    </exec>
+    <exec executable="mxmlc" dir="flash-src">
+      <arg value="${mxmlcarg}" />
+      <arg value="teacher.as" />
+    </exec>
+    <move file="flash-src/reaction.swf" todir="${flashdist}" />
+    <move file="flash-src/teacher.swf" todir="${flashdist}" />
+  </target>
+
+  <target name="pupil" depends="pupil-java">
+  </target>
+
+  <target name="webapp-static">
+    <copy todir="${distdir}">
+      <fileset dir="servlet-src/webapp-static" includes="*.html" />
+    </copy>
+    <copy todir="${distdir}/WEB-INF">
+      <fileset dir="servlet-src/webapp-static/WEB-INF" includes="*.xml" />
+      <fileset dir="servlet-src/webapp-static/WEB-INF" includes="*.properties" />
+    </copy>
+  </target>
+
+  <target name="flash-static">
+    <copy todir="${flashdist}">
+      <fileset dir="flash-src/static-files" includes="*" />
+    </copy>
+  </target>
+
+  <target name="dist" depends="copydeps,pupil,webapp-static,flash-static">
+  </target>
+
+  <!-- ******** DEPENDENCIES ******* -->
+
+  <property name="ivy.install.version" value="2.4.0"/>
+  <property name="ivy.jar.dir" value="${libdir}"/>
+  <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
+
+  <target name="copydeps" depends="dependencies">
+    <mkdir dir="${distdir}/WEB-INF/lib" />
+    <copy todir="${distdir}/WEB-INF/lib">
+      <fileset dir="${libdir}" includes="commons-lang.jar" />
+      <fileset dir="${libdir}" includes="commons-io.jar" />
+      <fileset dir="${libdir}" includes="commons-fileupload.jar" />
+      <fileset dir="${libdir}" includes="mysql-connector-java.jar" />
+      <fileset dir="${libdir}" includes="log4j-core.jar" />
+      <fileset dir="${libdir}" includes="log4j-1.2-api.jar" />
+    </copy>
+  </target>
+
+  <target name="download-ivy" unless="skip.download">
+    <get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true"/>
+  </target>
+
+  <target name="dependencies">
+    <path id="ivy.lib.path">
+      <fileset dir="${libdir}" includes="*.jar"/>
+    </path>
+    <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+    <ivy:retrieve conf="binaries" pattern="${libdir}/[artifact](-[classifier]).[ext]"/>
+  </target>  
+
+  <!-- ******** BUILD ******* -->
+
+  <target name="compile" depends="init,util,sql,pupil">
+  </target>
+
+  <!--  <target name="dist" depends="compile">
+    <jar destfile="./dist/jstatpack.jar" basedir="${build}"/>
+  </target> -->
+
+</project>
+
+
