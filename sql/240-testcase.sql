@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS testcase;
+
 CREATE TABLE testcase (
   testcase_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
   project_id INTEGER NOT NULL,

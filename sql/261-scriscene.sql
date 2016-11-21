@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS scriscene;
+
 CREATE TABLE scriscene (
   scriscene_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
   scene_id INTEGER NOT NULL,

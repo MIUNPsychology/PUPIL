@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS permission;
+
 CREATE TABLE permission (
   permission_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
   student_id INTEGER NOT NULL,

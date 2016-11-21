@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS project;
+
 CREATE TABLE project (
   project_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
   teacher_id INTEGER NOT NULL,
@@ -41,5 +43,5 @@ UPDATE project SET thankstop = 'Your data has now successfully been stored. Than
 UPDATE project SET thanksbottom = 'Press any key to be redirected to our homepage' WHERE name = 'visual1';
 UPDATE project SET thanksmid = 'No cute furry little animals were hurt in any way by this experiment' WHERE name = 'visual1';
 
-UPDATE project SET urlredirect = 'http://gathering.itm.miun.se/pupil' WHERE name = 'visual1';
+UPDATE project SET urlredirect = 'https://github.com/MIUNPsychology/PUPIL' WHERE name = 'visual1';
 

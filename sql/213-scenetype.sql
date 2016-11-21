@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS scenetype;
+
 CREATE TABLE scenetype (
   scenetype_id INTEGER NOT NULL PRIMARY KEY,
   mnemonic VARCHAR(30) NOT NULL,

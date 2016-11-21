@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS testresultat;
+
 CREATE TABLE testresultat (
   testresultat_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
   person_id INTEGER NOT NULL,

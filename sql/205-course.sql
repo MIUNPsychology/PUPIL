@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS course;
+
 CREATE TABLE course (
   course_id INTEGER PRIMARY KEY AUTO_INCREMENT,
   teacher_id INTEGER NOT NULL,

@@ -1,4 +1,4 @@
-SET NAMES 'utf8';
+DROP TABLE IF EXISTS testgrupp;
 
 CREATE TABLE testgrupp (
   testgrupp_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -6,7 +6,6 @@ CREATE TABLE testgrupp (
   beskrivning VARCHAR(80)
 ) ENGINE=INNODB;
 
-INSERT INTO testgrupp(namn,beskrivning) VALUES('student','studenter på miun');
-INSERT INTO testgrupp(namn,beskrivning) VALUES('teacher','lärare på miun');
-INSERT INTO testgrupp(namn,beskrivning) VALUES('uteliggare','folk från kyrkparken');
+INSERT INTO testgrupp(namn,beskrivning) VALUES('student','students');
+INSERT INTO testgrupp(namn,beskrivning) VALUES('teacher','teachers');
 

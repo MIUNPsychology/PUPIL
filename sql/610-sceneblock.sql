@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS sceneblock;
+
 CREATE TABLE sceneblock (
   block_id INTEGER NOT NULL,
   scene_id INTEGER NOT NULL,

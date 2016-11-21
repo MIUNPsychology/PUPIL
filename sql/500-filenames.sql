@@ -1,3 +1,5 @@
+DROP VIEW IF EXISTS filenames;
+
 CREATE VIEW filenames
 AS SELECT 
   image.image_id, 

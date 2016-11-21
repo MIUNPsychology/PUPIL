@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS pattern;
+
 CREATE TABLE pattern (
   pattern_id INTEGER PRIMARY KEY NOT NULL,
   images INTEGER NOT NULL,

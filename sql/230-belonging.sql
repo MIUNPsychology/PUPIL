@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS belonging;
+
 CREATE TABLE belonging (
   course_id INTEGER NOT NULL,
   student_id INTEGER NOT NULL,

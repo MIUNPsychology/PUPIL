@@ -1,3 +1,5 @@
+DROP VIEW IF EXISTS blinkfilenames;
+
 CREATE VIEW
   blinkfilenames
 AS SELECT

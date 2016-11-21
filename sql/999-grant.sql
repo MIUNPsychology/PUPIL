@@ -1,4 +1,0 @@
-GRANT ALL PRIVILEGES ON pupil.* TO pupil@localhost IDENTIFIED BY 'pupil';
-
-FLUSH PRIVILEGES;
-
