@@ -4,26 +4,13 @@ PUPIL
 
 ## Building
 
-To build PUPIL you need to a) download the dependencies, b) build the 
-flash frontend and c) build the java servlet backend.
+To build PUPIL you need to download the dependencies and use "ant"
+to compile the various components. 
 
 Each build step will create files indirectory dist/PUPIL. This is a web 
 application suitable for (for example) Tomcat. 
 
-### Downloading dependencies
-
-There is a number of JAR files which need to be placed in lib before
-being able to perform the java build step. 
-
-You can find detailed instructions in the [build README](lib/README.md).
-
-Or, executive summary, run the following commands:
-
-    cd lib
-    ivy
-
-
-### Building the flash frontend
+### Requirements
 
 The frontend is written as a Flex 3.x flash application. To build these
 things, you need the Flex SDK from adobe. At the time of writing this, 
@@ -39,28 +26,41 @@ apache version of Flex. It requires several separately downloaded
 proprietary binary blobs, and at the time of writing these the links 
 to the blobs lead to non-existent web pages.
 
-There is a Makefile available in flash-src. It will automate the build
-and install process, but it presupposes that "mxmlc" is available in 
-PATH. You will find "mxmlc" in the "bin" subdir of the SDK zip you 
-downloaded from adobe, so add this dir to your PATH variable. 
+The backend is written in java, and a JDK version of at least 1.6 is 
+needed. In principle any modern JDK should thus work. 
 
-To build the flash frontend run:
+The build system is "ant", which needs to be installed and configured 
+properly. See http://ant.apache.org/
 
-    make 
+### Downloading dependencies
 
-To "install" it to the folder under dist/ where the application is 
-assembled, run:
+There is a number of JAR files which need to be placed in "lib/" before
+being able to perform the java build step. 
 
-    make dist
+The easiest way to acquire these are via:
 
-To build manually (for example on windows), run
+    ant download-ivy
+    ant dependencies
 
-    mxmlc.exe teacher.as
-    mxmlc.exe reaction.as
+Or if you for some reason need to do this manually, you can find detailed
+instructions in the [lib README](lib/README.md).
 
-Create a new directory dist/PUPIL/flash. Copy everything from 
-static-files to this directory. Copy the .swf files to the directory.
+### Building everything in one step 
 
-### Building the servlet backend
+To compile a viable webapp (after dependencies have been downloaded) in 
+"dist/PUPIL/" run:
 
+    ant dist
+
+This will build the flash frontend, the java backend, copy dependencies, 
+create an SQL setup script etc. 
+
+### Building components separately
+
+If you want to (re-)build a specific part, you can use one of the 
+the following ant tasks:
+
+* pupil-flash -- will build the flash frontend
+* pupil-java -- will build the java backend
+* mergesql -- will construct a SQL database setup file
 
