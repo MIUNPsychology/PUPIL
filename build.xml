@@ -26,17 +26,29 @@
     <pathelement path="${java.class.path}" />
   </path>
 
-  <target name="init">
-    <tstamp/>
-    <mkdir dir="${build}"/>    
-    <mkdir dir="${flashdist}"/>    
+  <!-- ******** FLASH ******* -->
+
+  <target name="pupil-flash" depends="init">
+    <exec executable="mxmlc" dir="flash-src">
+      <arg value="${mxmlcarg}" />
+      <arg value="reaction.as" />
+    </exec>
+    <exec executable="mxmlc" dir="flash-src">
+      <arg value="${mxmlcarg}" />
+      <arg value="teacher.as" />
+    </exec>
+    <move file="flash-src/reaction.swf" todir="${flashdist}" />
+    <move file="flash-src/teacher.swf" todir="${flashdist}" />
   </target>
 
-  <target name="clean">
-    <delete dir="${distdir}" />
+  <target name="flash-static">
+    <copy todir="${flashdist}">
+      <fileset dir="flash-src/static-files" includes="*" />
+    </copy>
   </target>
 
-  <!-- **** UTIL CLASSES ***** -->
+
+  <!-- ***** JAVA ****** -->
 
   <target name="util" depends="init">
     <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false">
@@ -54,8 +66,6 @@
     </javac>
   </target>
 
-
-  <!-- ***** PUPIL MAIN ****** -->
 
   <target name="core" depends="init,util">
     <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false">
@@ -81,25 +91,6 @@
     </javac>
   </target>
 
-  <target name="pupil-java" depends="init,core,commands,pupilmain"> 
-  </target>
-
-  <target name="pupil-flash" depends="init">
-    <exec executable="mxmlc" dir="flash-src">
-      <arg value="${mxmlcarg}" />
-      <arg value="reaction.as" />
-    </exec>
-    <exec executable="mxmlc" dir="flash-src">
-      <arg value="${mxmlcarg}" />
-      <arg value="teacher.as" />
-    </exec>
-    <move file="flash-src/reaction.swf" todir="${flashdist}" />
-    <move file="flash-src/teacher.swf" todir="${flashdist}" />
-  </target>
-
-  <target name="pupil" depends="pupil-java">
-  </target>
-
   <target name="webapp-static">
     <copy todir="${distdir}">
       <fileset dir="servlet-src/webapp-static" includes="*.html" />
@@ -110,13 +101,28 @@
     </copy>
   </target>
 
-  <target name="flash-static">
-    <copy todir="${flashdist}">
-      <fileset dir="flash-src/static-files" includes="*" />
-    </copy>
+  <target name="pupil-java" depends="init,util,sql,core,commands,pupilmain"> 
   </target>
 
-  <target name="dist" depends="copydeps,pupil,webapp-static,flash-static">
+  <!-- ******** GENERAL ******* -->
+
+  <target name="mergesql" depends="init">
+    <concat destfile="${distdir}/setup_db.sql">
+      <fileset dir="sql" includes="*.sql"/>
+    </concat>
+  </target>
+
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${build}"/>    
+    <mkdir dir="${flashdist}"/>    
+  </target>
+
+  <target name="clean">
+    <delete dir="${distdir}" />
+  </target>
+
+  <target name="pupil" depends="pupil-java,pupil-flash">
   </target>
 
   <!-- ******** DEPENDENCIES ******* -->
@@ -151,12 +157,11 @@
 
   <!-- ******** BUILD ******* -->
 
-  <target name="compile" depends="init,util,sql,pupil">
+  <target name="compile" depends="init,pupil">
   </target>
 
-  <!--  <target name="dist" depends="compile">
-    <jar destfile="./dist/jstatpack.jar" basedir="${build}"/>
-  </target> -->
+  <target name="dist" depends="copydeps,pupil,webapp-static,flash-static,mergesql">
+  </target>
 
 </project>
 
