@@ -2,12 +2,21 @@
 
 These are things which need to be fixed before a release
 
+## Bugs
+
+* The logging system isn't functional
+
 ## Missing features
 
 * Cannot create a new teacher 
 * Cannot change password for an existing teacher
+* Need to have config file for database connection (i.e not hard code it)
 
-## Functionality 
+## Docs
+
+* Are the old docs available anywhere?
+
+## Deprecated functionality 
 
 * Remove MIUN-specific student database calls
 
@@ -17,7 +26,5 @@ These are things which need to be fixed before a release
 
 ## Build/distribution
 
-* Merge SQL files into single database setup file
 * Copy/create appropriate license files for all dependencies
-* Create timestamped zip with entire distribution
 
