@@ -66,7 +66,6 @@
     </javac>
   </target>
 
-
   <target name="core" depends="init,util">
     <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false">
       <src path="${javasrc}" />
@@ -98,6 +97,9 @@
     <copy todir="${distdir}/WEB-INF">
       <fileset dir="servlet-src/webapp-static/WEB-INF" includes="*.xml" />
       <fileset dir="servlet-src/webapp-static/WEB-INF" includes="*.properties" />
+    </copy>
+    <copy todir="${distdir}/flash">
+      <fileset dir="servlet-src/jsp" includes="*.jsp" />
     </copy>
   </target>
 
