@@ -16,14 +16,14 @@ The frontend is written as a Flex 3.x flash application. To build these
 things, you need the Flex SDK from adobe. At the time of writing this, 
 you can find the SDK at 
 
-    http://www.adobe.com/devnet/flex/flex-sdk-download-all.html
+    http://www.adobe.com/devnet/flex/flex-sdk-download.html
 
-It is possible a 4.x SDK works, but if you run into trouble, use one of
-the 3.x SDKs available. 
+At the time of writing this, only flex 3.x works. If you feel adventurous
+you could try a later SDK version.
 
 To protect your sanity, please stay away from trying to install the 
 apache version of Flex. It requires several separately downloaded
-proprietary binary blobs, and at the time of writing these the links 
+proprietary binary blobs, and at the time of writing these, the links 
 to the blobs lead to non-existent web pages.
 
 The backend is written in java, and a JDK version of at least 1.6 is 
