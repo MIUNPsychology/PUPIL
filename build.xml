@@ -12,8 +12,9 @@
   <property name="cpargs" value="-Xlint:all,-path" />
   <property name="libdir" value="lib" />
   <property name="ivypath" value="" />
-  <property name="flashdist" value="${build}/flash" />
-  <property name="mxmlcarg" value="-static-link-runtime-shared-libraries" />
+  <property name="flashdist" value="${distdir}/flash" />
+  <property name="sourcever" value="1.8" />
+  <property name="targetver" value="1.8" />
 
   <path id="project.class.path">
     <fileset dir="${libdir}" includes="commons-lang.jar" />
@@ -30,11 +31,9 @@
 
   <target name="pupil-flash" depends="init">
     <exec executable="mxmlc" dir="flash-src">
-      <arg value="${mxmlcarg}" />
       <arg value="reaction.as" />
     </exec>
     <exec executable="mxmlc" dir="flash-src">
-      <arg value="${mxmlcarg}" />
       <arg value="teacher.as" />
     </exec>
     <move file="flash-src/reaction.swf" todir="${flashdist}" />
@@ -51,7 +50,7 @@
   <!-- ***** JAVA ****** -->
 
   <target name="util" depends="init">
-    <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false">
+    <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false" source="${sourcever}" target="${targetver}">
       <src path="${javasrc}" />
       <include name="pupil/util/*.java" />
       <compilerarg value="${cpargs}"/>
@@ -59,7 +58,7 @@
   </target>
 
   <target name="sql" depends="init,util">
-    <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false">
+    <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false" source="${sourcever}" target="${targetver}">
       <src path="${javasrc}" />
       <include name="pupil/sql/*.java" />
       <compilerarg value="${cpargs}"/>
@@ -67,7 +66,7 @@
   </target>
 
   <target name="core" depends="init,util">
-    <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false">
+    <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false" source="${sourcever}" target="${targetver}">
       <src path="${javasrc}" />
       <include name="pupil/core/*.java" />
       <compilerarg value="${cpargs}"/>
@@ -75,7 +74,7 @@
   </target>
 
   <target name="commands" depends="init,util,core,sql">
-    <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false">
+    <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false" source="${sourcever}" target="${targetver}">
       <src path="${javasrc}" />
       <include name="pupil/command/*.java" />
       <compilerarg value="${cpargs}"/>
@@ -83,7 +82,7 @@
   </target>
 
   <target name="pupilmain" depends="init,util,core,sql,commands">
-    <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false">
+    <javac debug="${javac.debug}" debuglevel="${dbglvl}" destdir="${build}" classpathref="project.class.path" includeantruntime="false" source="${sourcever}" target="${targetver}">
       <src path="${javasrc}" />
       <include name="pupil/*.java" />
       <compilerarg value="${cpargs}"/>
@@ -141,7 +140,7 @@
       <fileset dir="${libdir}" includes="commons-fileupload.jar" />
       <fileset dir="${libdir}" includes="mysql-connector-java.jar" />
       <fileset dir="${libdir}" includes="log4j-core.jar" />
-      <fileset dir="${libdir}" includes="log4j-1.2-api.jar" />
+      <fileset dir="${libdir}" includes="log4j*-api.jar" />
     </copy>
   </target>
 
@@ -164,6 +163,10 @@
 
   <target name="dist" depends="copydeps,pupil,webapp-static,flash-static,mergesql">
   </target>
+
+  <target name="all" depends="clean,dist">
+  </target>
+
 
 </project>
 
