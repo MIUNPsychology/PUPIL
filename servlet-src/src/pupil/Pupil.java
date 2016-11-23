@@ -38,7 +38,8 @@ public class Pupil extends UtilityServlet
  
   private HashMap<String,Command> commands = null;
 
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(Pupil.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(Pupil.class);
+  private static LogWrapper log = new LogWrapper();
 
   /** processNormalRequest */
   public void processNormalRequest(StaticInfoBlob sib,RequestInfoBlob rib) throws IOException, ServletException

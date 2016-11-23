@@ -23,7 +23,8 @@ public class DBManager implements Runnable
 
   private Connection myConnection = null;
 
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(DBManager.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(DBManager.class);
+  private static LogWrapper log = new LogWrapper();
 
   private Thread connectionCheck = null;
 
