@@ -2,7 +2,7 @@
 *~
 *.log
 *.bak
-*.swf
+flash-src/*.swf
 *.class
 *.jar
 dist/*
