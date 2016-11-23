@@ -1,6 +1,10 @@
-<project name="pupil" default="compile" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="pupil" default="pupil-java" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
 
   <!-- ******* SETTINGS ******* -->
+
+  <tstamp>
+    <format property="ziptime" pattern="yyyyMMdd-HHmm" />
+  </tstamp>
 
   <property name="javac.debug" value="true" />
   <property name="dbglvl" value="lines,vars,source" />
@@ -13,6 +17,7 @@
   <property name="libdir" value="lib" />
   <property name="ivypath" value="" />
   <property name="flashdist" value="${distdir}/flash" />
+  <property name="setupdist" value="${distdir}/SETUP" />
   <property name="sourcever" value="1.8" />
   <property name="targetver" value="1.8" />
 
@@ -108,19 +113,29 @@
   <!-- ******** GENERAL ******* -->
 
   <target name="mergesql" depends="init">
-    <concat destfile="${distdir}/setup_db.sql">
+    <concat destfile="${setupdist}/setup_db.sql">
       <fileset dir="sql" includes="*.sql"/>
     </concat>
   </target>
 
+  <target name="copydocs">
+    <copy todir="${setupdist}">
+      <fileset dir="docs" includes="INSTALL.md" />
+    </copy>
+  </target>
+ 
   <target name="init">
     <tstamp/>
     <mkdir dir="${build}"/>    
     <mkdir dir="${flashdist}"/>    
+    <mkdir dir="${setupdist}"/>    
   </target>
 
   <target name="clean">
     <delete dir="${distdir}" />
+    <delete>
+      <fileset dir="dist" includes="*.zip" />
+    </delete>
   </target>
 
   <target name="pupil" depends="pupil-java,pupil-flash">
@@ -158,10 +173,8 @@
 
   <!-- ******** BUILD ******* -->
 
-  <target name="compile" depends="init,pupil">
-  </target>
-
-  <target name="dist" depends="copydeps,pupil,webapp-static,flash-static,mergesql">
+  <target name="dist" depends="copydeps,pupil,webapp-static,flash-static,mergesql,copydocs">
+    <zip destfile="dist/PUPIL-${ziptime}.zip" basedir="dist" excludes="*.zip,.keep" />
   </target>
 
   <target name="all" depends="clean,dist">
