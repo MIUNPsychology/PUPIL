@@ -101,7 +101,7 @@ Start a mysql root prompt (see mysql docs on how to do this). Then run:
     GRANT ALL ON pupil.* TO pupil@'localhost' IDENTIFIED by 'pupil';
     FLUSH PRIVILEGES;
 
-## Popuplate the database
+## Populate the database
 
 In the SETUP directory, there is a file called setup_db.sql. This 
 contains the basic definition for the initial database. 
@@ -121,6 +121,34 @@ to be written
 In the SETUP directory you will find a sample configuration file for the
 webapp ("pupil.xml.sample"). You will need to edit this and set docBase
 to point at the PUPIL directory from the zip file. You then need to
-move/rename it to the configurations directory for tomcat. On ubuntu 
-the file should end up as /etc/tomcat8/Catalina/localhost/pupil.xml.
+move/rename it to the configurations directory for tomcat. 
+
+### Installing the config on ubuntu
+
+On ubuntu the file should end up as /etc/tomcat8/Catalina/localhost/pupil.xml.
+
+### Installing the config on windows
+
+to be written
+
+## Starting PUPIL
+
+Tomcat will most likely need a restart in order to find the configuration.
+So restart Tomcat and then access the manager which will most likely be
+available at:
+
+http://127.0.0.1:8080/manager/html
+
+The login and password for the manager will need to be set in the Tomcat
+configuration before you can access this page. You can find instructions
+on how to do this at
+
+https://tomcat.apache.org/tomcat-8.0-doc/manager-howto.html#Configuring_Manager_Application_Access
+
+But once you have entered the manager page, you should see an entry 
+"/pupil". If not, you have most likely missed something in the "Edit
+webapp configuration" step. 
+
+If the entry is there, click on it and you should arrive at the
+login page for PUPIL.
 
