@@ -26,6 +26,9 @@ to be written
 
 ## Edit the webapp configuration
 
-to be written
-
+In the SETUP directory you will find a sample configuration file for the
+webapp ("pupil.xml.sample"). You will need to edit this and set docBase
+to point at the PUPIL directory from the zip file. You then need to
+move/rename it to the configurations directory for tomcat. On ubuntu 
+the file should end up as /etc/tomcat8/Catalina/localhost/pupil.xml.
 
