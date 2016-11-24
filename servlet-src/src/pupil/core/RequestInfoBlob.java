@@ -3,6 +3,7 @@ package pupil.core;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import pupil.util.*;
 
 public class RequestInfoBlob
 {
@@ -14,7 +15,8 @@ public class RequestInfoBlob
 
   private PrintWriter out = null;
 
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(RequestInfoBlob.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(RequestInfoBlob.class);
+  private static LogWrapper log = new LogWrapper();
 
   public RequestInfoBlob(UtilityServlet servlet,HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException    
   {

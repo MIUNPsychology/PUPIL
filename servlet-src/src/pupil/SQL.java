@@ -29,7 +29,8 @@ public class SQL extends UtilityServlet
 
   private DBManager db = null;
  
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(SQL.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(SQL.class);
+  private static LogWrapper log = new LogWrapper();
 
   private File sqldir = null;
 

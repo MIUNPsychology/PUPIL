@@ -23,7 +23,7 @@ public abstract class UtilityServlet extends HttpServlet
   public static final long serialVersionUID = 0L;
  
   private StaticInfoBlob sib = null;
-  public static org.apache.log4j.Logger log = null;
+  private static LogWrapper log = new LogWrapper();
 
   public StaticInfoBlob getSIB()
   {
@@ -218,8 +218,8 @@ public abstract class UtilityServlet extends HttpServlet
   public final void init()
   {
     sib = new StaticInfoBlob(this);
-    org.apache.log4j.PropertyConfigurator.configure(sib.getLogConf());
-    log = org.apache.log4j.Logger.getLogger(UtilityServlet.class);
+    //org.apache.log4j.PropertyConfigurator.configure(sib.getLogConf());
+    //log = org.apache.log4j.Logger.getLogger(UtilityServlet.class);
 
     log.debug("At this point, the logger should be initialized");
 

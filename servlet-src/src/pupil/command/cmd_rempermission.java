@@ -20,7 +20,8 @@ import org.apache.commons.io.*;
 
 public class cmd_rempermission extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_rempermission.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_rempermission.class);
+  private static LogWrapper log = new LogWrapper();
 
   public cmd_rempermission(DBManager dbm, StaticInfoBlob info)
   {

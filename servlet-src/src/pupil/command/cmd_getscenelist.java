@@ -20,7 +20,8 @@ import org.apache.commons.io.*;
 
 public class cmd_getscenelist extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_getscenelist.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_getscenelist.class);
+  private static LogWrapper log = new LogWrapper();
 
   public cmd_getscenelist(DBManager dbm, StaticInfoBlob info)
   {

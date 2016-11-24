@@ -20,7 +20,8 @@ import org.apache.commons.io.*;
 
 public class cmd_getblocklist extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_getblocklist.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_getblocklist.class);
+  private static LogWrapper log = new LogWrapper();
 
   public cmd_getblocklist(DBManager dbm, StaticInfoBlob info)
   {

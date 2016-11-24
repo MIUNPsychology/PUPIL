@@ -26,8 +26,6 @@
     <fileset dir="${libdir}" includes="commons-io.jar" />
     <fileset dir="${libdir}" includes="commons-fileupload.jar" />
     <fileset dir="${libdir}" includes="mysql-connector-java.jar" />
-    <fileset dir="${libdir}" includes="log4j-core.jar" />
-    <fileset dir="${libdir}" includes="log4j-1.2-api.jar" />
     <fileset dir="${libdir}" includes="servlet-api*.jar" />
     <pathelement path="${java.class.path}" />
   </path>
@@ -155,8 +153,6 @@
       <fileset dir="${libdir}" includes="commons-io.jar" />
       <fileset dir="${libdir}" includes="commons-fileupload.jar" />
       <fileset dir="${libdir}" includes="mysql-connector-java.jar" />
-      <fileset dir="${libdir}" includes="log4j-core.jar" />
-      <fileset dir="${libdir}" includes="log4j*-api.jar" />
     </copy>
   </target>
 

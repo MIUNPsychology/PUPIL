@@ -20,7 +20,8 @@ import org.apache.commons.io.*;
 
 public class cmd_savesql extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_savesql.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_savesql.class);
+  private static LogWrapper log = new LogWrapper();
 
   public cmd_savesql(DBManager dbm, StaticInfoBlob info)
   {

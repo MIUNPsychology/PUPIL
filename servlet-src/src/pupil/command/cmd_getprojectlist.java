@@ -20,7 +20,8 @@ import org.apache.commons.io.*;
 
 public class cmd_getprojectlist extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_getprojectlist.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_getprojectlist.class);
+  private static LogWrapper log = new LogWrapper();
 
   public cmd_getprojectlist(DBManager dbm, StaticInfoBlob info)
   {

@@ -20,7 +20,8 @@ import org.apache.commons.io.*;
 
 public class cmd_replacecategory extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_replacecategory.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_replacecategory.class);
+  private static LogWrapper log = new LogWrapper();
 
   public cmd_replacecategory(DBManager dbm, StaticInfoBlob info)
   {

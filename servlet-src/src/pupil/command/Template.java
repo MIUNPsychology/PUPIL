@@ -20,7 +20,8 @@ import org.apache.commons.io.*;
 
 public class Template extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(Template.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(Template.class);
+  private static LogWrapper log = new LogWrapper();
 
   public Template(DBManager dbm, StaticInfoBlob info)
   {

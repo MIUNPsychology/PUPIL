@@ -20,7 +20,8 @@ public class XMLInfoBlob
 
   private Document myResponse = null;
 
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(RequestInfoBlob.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(RequestInfoBlob.class);
+  private static LogWrapper log = new LogWrapper();
 
   public XMLInfoBlob(Document d, String raw)
   {

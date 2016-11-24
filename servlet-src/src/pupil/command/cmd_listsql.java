@@ -20,7 +20,8 @@ import org.apache.commons.io.*;
 
 public class cmd_listsql extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_listsql.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_listsql.class);
+  private static LogWrapper log = new LogWrapper();
 
   public cmd_listsql(DBManager dbm, StaticInfoBlob info)
   {

@@ -22,7 +22,8 @@ import org.apache.commons.lang.*;
 
 public class cmd_cloneproject extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_cloneproject.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_cloneproject.class);
+  private static LogWrapper log = new LogWrapper();
 
   public cmd_cloneproject(DBManager dbm, StaticInfoBlob info)
   {

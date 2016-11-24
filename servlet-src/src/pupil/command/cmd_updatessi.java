@@ -20,7 +20,8 @@ import org.apache.commons.io.*;
 
 public class cmd_updatessi extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_updatessi.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_updatessi.class);
+  private static LogWrapper log = new LogWrapper();
 
   public cmd_updatessi(DBManager dbm, StaticInfoBlob info)
   {

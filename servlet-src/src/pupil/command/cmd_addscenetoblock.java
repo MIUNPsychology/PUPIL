@@ -20,7 +20,8 @@ import org.apache.commons.io.*;
 
 public class cmd_addscenetoblock extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_addscenetoblock.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_addscenetoblock.class);
+  private static LogWrapper log = new LogWrapper();
 
   public cmd_addscenetoblock(DBManager dbm, StaticInfoBlob info)
   {

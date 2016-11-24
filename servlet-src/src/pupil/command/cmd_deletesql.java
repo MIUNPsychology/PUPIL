@@ -20,7 +20,8 @@ import org.apache.commons.io.*;
 
 public class cmd_deletesql extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_deletesql.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_deletesql.class);
+  private static LogWrapper log = new LogWrapper();
 
   public cmd_deletesql(DBManager dbm, StaticInfoBlob info)
   {

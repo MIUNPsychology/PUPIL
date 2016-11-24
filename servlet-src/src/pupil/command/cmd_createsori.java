@@ -20,7 +20,8 @@ import org.apache.commons.io.*;
 
 public class cmd_createsori extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_createsori.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_createsori.class);
+  private static LogWrapper log = new LogWrapper();
 
   public cmd_createsori(DBManager dbm, StaticInfoBlob info)
   {

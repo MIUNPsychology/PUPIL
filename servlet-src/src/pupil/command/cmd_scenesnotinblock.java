@@ -20,7 +20,8 @@ import org.apache.commons.io.*;
 
 public class cmd_scenesnotinblock extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_scenesnotinblock.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_scenesnotinblock.class);
+  private static LogWrapper log = new LogWrapper();
 
   public cmd_scenesnotinblock(DBManager dbm, StaticInfoBlob info)
   {

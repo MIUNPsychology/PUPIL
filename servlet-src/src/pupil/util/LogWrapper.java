@@ -6,15 +6,45 @@ import java.io.*;
 
 public class LogWrapper
 {
-  private File logFile = new File("/tmp/pupil.log");
+  private final int maxLogLevel = 3;
+
+  private String[] logLevels = new String[]{
+                                "ERROR", // 0
+                                "WARN ", // 1
+                                "INFO ", // 2
+                                "DEBUG", // 3
+                                "TRACE"  // 4
+                                };
+
+  private File logFile = null;
 
   public LogWrapper()
   {
+    String catalina = System.getProperty("catalina.base");
+    if(catalina != null)
+    {
+      File tomcatRoot = new File(catalina);
+      File logDir = new File(tomcatRoot,"logs");
+      
+      if(logDir.exists())        
+      {
+        logFile = new File(logDir,"pupil.log");
+      }
+    }    
   }
   
-  private void message(Object msg, Object extra)
+  private void message(int level, Object msg, Object extra)
   {
-    String line = "PUPIL -- ";
+    if(level > maxLogLevel) return;
+
+    StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+    StackTraceElement sourceElement = stackTraceElements[3];
+    
+    String method = sourceElement.getMethodName();
+    String classname = sourceElement.getClassName();
+    int linenr = sourceElement.getLineNumber();    
+
+    String line = logLevels[level] + " -- " + classname + "." + method + "():" + linenr + " -- ";
 
     if(msg != null)
     {
@@ -40,6 +70,12 @@ public class LogWrapper
 
     line = line + "\n";
 
+    if(logFile == null) 
+    {
+      System.out.println(line);
+      return;
+    }
+
     try
     {
       FileUtils.writeStringToFile(logFile,line,true);
@@ -51,52 +87,52 @@ public class LogWrapper
 
   public void trace(Object msg)
   {
-    this.message(msg,null);
+    this.message(4,msg,null);
   }
 
   public void trace(Object msg, Object extra)
   {
-    this.message(msg,extra);
+    this.message(4,msg,extra);
   }
 
   public void debug(Object msg)
   {
-    this.message(msg,null);
+    this.message(3,msg,null);
   }
 
   public void debug(Object msg, Object extra)
   {
-    this.message(msg,extra);
+    this.message(3,msg,extra);
   }
 
   public void info(Object msg)
   {
-    this.message(msg,null);
+    this.message(2,msg,null);
   }
 
   public void info(Object msg, Object extra)
   {
-    this.message(msg,extra);
+    this.message(2,msg,extra);
   }
 
   public void warn(Object msg)
   {
-    this.message(msg,null);
+    this.message(1,msg,null);
   }
 
   public void warn(Object msg, Object extra)
   {
-    this.message(msg,extra);
+    this.message(1,msg,extra);
   }
 
   public void error(Object msg)
   {
-    this.message(msg,null);
+    this.message(0, msg,null);
   }
 
   public void error(Object msg, Object extra)
   {
-    this.message(msg,extra);
+    this.message(0, msg,extra);
   }
 
 }

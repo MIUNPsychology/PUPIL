@@ -20,7 +20,8 @@ import org.apache.commons.io.*;
 
 public class cmd_removescenefromblock extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_removescenefromblock.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_removescenefromblock.class);
+  private static LogWrapper log = new LogWrapper();
 
   public cmd_removescenefromblock(DBManager dbm, StaticInfoBlob info)
   {

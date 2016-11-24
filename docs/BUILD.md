@@ -38,8 +38,8 @@ The easiest way to acquire these are via:
     ant download-ivy
     ant dependencies
 
-Or if you for some reason need to do this manually, you can find detailed
-instructions in the [lib README](../lib/README.md).
+If (for some reason) you don't want to do this automatically, read the
+ivy.xml file to figure out which jars are needed. 
 
 ## Building everything in one step 
 

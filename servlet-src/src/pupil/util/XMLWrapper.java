@@ -16,7 +16,8 @@ public class XMLWrapper
   private static TransformerFactory tfactory = null;
   private static Transformer transform = null;
 
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(XMLWrapper.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(XMLWrapper.class);
+  private static LogWrapper log = new LogWrapper();
 
   private static void setup() throws ParserConfigurationException, TransformerConfigurationException
   {

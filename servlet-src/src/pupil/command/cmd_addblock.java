@@ -20,7 +20,8 @@ import org.apache.commons.io.*;
 
 public class cmd_addblock extends Command
 {
-  private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_addblock.class);
+  //private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(cmd_addblock.class);
+  private static LogWrapper log = new LogWrapper();
 
   public cmd_addblock(DBManager dbm, StaticInfoBlob info)
   {

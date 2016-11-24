@@ -361,7 +361,7 @@ public class DBManager implements Runnable
         type = meta.getColumnTypeName(i);
         table = meta.getTableName(i);
 
-        log.debug("Column " + i + ": name=" + name + " type=" + type + " table=" + table);
+        log.trace("Column " + i + ": name=" + name + " type=" + type + " table=" + table);
         
         columnInfo = d.createElement("columninfo");
         columnInfo.setAttribute("num","" + i);
@@ -392,7 +392,7 @@ public class DBManager implements Runnable
       {
         rnum++;
 
-        log.debug("starting row number " + rnum);
+        log.trace("starting row number " + rnum);
 
         row = d.createElement("row");
         row.setAttribute("num","" + rnum);
@@ -414,7 +414,7 @@ public class DBManager implements Runnable
           col.appendChild(contents);
           row.appendChild(col);
 
-          log.debug("column " + i + " data: " + s);
+          log.trace("column " + i + " data: " + s);
         }
       }
 
