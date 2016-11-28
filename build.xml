@@ -103,6 +103,8 @@
     <copy todir="${distdir}/flash">
       <fileset dir="servlet-src/jsp" includes="*.jsp" />
     </copy>
+    <move file="${distdir}/flash/admin.jsp" tofile="${distdir}/admin.jsp" />
+
   </target>
 
   <target name="pupil-java" depends="init,util,sql,core,commands,pupilmain"> 
