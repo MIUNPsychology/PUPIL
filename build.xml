@@ -122,6 +122,7 @@
     <copy todir="${setupdist}">
       <fileset dir="docs" includes="INSTALL.md" />
       <fileset dir="docs" includes="*.sample" />
+      <fileset dir="docs" includes="*.pdf" />
     </copy>
   </target>
  

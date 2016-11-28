@@ -8,6 +8,9 @@ These are the basic steps required to get PUPIL up and running:
 * Create a mysql database
 * Populate the database using the setup_db.sql script
 * Edit and move the pupil webapp configuration to the appropriate Tomcat directory
+* Start pupil
+* Create a teacher
+* Login in and test that everything works
 
 ## Install Java
 
@@ -65,7 +68,7 @@ http://tomcat.apache.org/tomcat-8.0-doc/setup.html#Windows
 
 ## Install MySQL
 
-Currently PUPIL is hard-coded to use MySQL, but it's possible that, 
+Currently PUPIL is written for MySQL, but it's possible that, 
 for example, MariaDB is compatible enough to work anyway. But out of 
 convenience, stick with MySQL. Any modern version should work.
 
@@ -91,9 +94,15 @@ http://dev.mysql.com/doc/refman/5.7/en/windows-installation.html
 
 ## Create a mysql database
 
-Currently all values are hard-coded, which is ugly. This might change
-in the future. But in practice, you will now need to create a database
-called "pupil" with a user called "pupil" and a password "pupil". 
+You need to create a database and configure access to it. You can choose
+database name, database user and database password freely, but remember
+these. You will need to insert them in a configuration file later.
+
+The following is an example only, for creating a database called "pupil",
+with a user "pupil" that has a password "pupil". This is how the default
+configuration is written, so if you only want to test things on your 
+own computer this might suffice. But for production environments you 
+should be more creative with at least the password. 
 
 Start a mysql root prompt (see mysql docs on how to do this). Then run:
 
@@ -112,12 +121,27 @@ On ubuntu, run:
 
     mysql -u pupil --password=pupil pupil < setup_db.sql
 
+(but replace the first "pupil" with the username you used above, the 
+second "pupil" with your password and the third "pupil" with the name 
+of your database)
+
 ### Running the setup script on windows
 
 to be written
 
 ## Edit the webapp configuration
 
+This step consist of two parts: Editing the database and admin settings
+in "WEB-INF/web.xml" and writing a configuration file for Tomcat so that
+it can find the web application.
+
+For the first part: edit the file WEB-INF/web.xml. Find and change the
+admin username and passwords. You can set whatever you want here, this is
+only used for managing teachers. Also change all relevant database 
+settings. If you named your database name/user/password "pupil", you can 
+keep the existing values.
+
+For the second part:
 In the SETUP directory you will find a sample configuration file for the
 webapp ("pupil.xml.sample"). You will need to edit this and set docBase
 to point at the PUPIL directory from the zip file. You then need to
@@ -151,4 +175,30 @@ webapp configuration" step.
 
 If the entry is there, click on it and you should arrive at the
 login page for PUPIL.
+
+## Create a teacher
+
+If everything worked thus far, you should now be able to create a teacher
+login. If pupil is on your local computer, navigate to:
+
+http://127.0.0.1/pupil/admin.jsp
+
+You will be asked for the admin username and password, which you entered
+in the web.xml file above. 
+
+Here you can find some self-explanatory fields for creating and changing
+teachers. 
+
+## Login as a teacher 
+
+You should now have a configured system. Navigate to:
+
+http://127.0.0.1/pupil
+
+.. and login as a teacher. 
+
+## From here
+
+The docs are somewhat outdated, but should be relevant for the most part.
+You can [find the PDF documentation here](old_user_manual.pdf).
 
