@@ -614,9 +614,18 @@ public class Pupil extends UtilityServlet
       log.error("Image directory is not writable");
     }
 
+    ServletContext context = sib.getServletContext();
+
+    String databaseName = context.getInitParameter("databaseName");
+    String databaseUser = context.getInitParameter("databaseUser");
+    String databasePassword = context.getInitParameter("databasePassword");
+    String databaseUrl = context.getInitParameter("databaseUrl");
+    String databaseDriver = context.getInitParameter("databaseDriver");
+
     try
     {
-      db = new DBManager("jdbc:mysql://localhost:3306/","pupil","com.mysql.jdbc.Driver","pupil","pupil");
+      db = new DBManager(databaseUrl,databaseName,databaseDriver,databaseUser,databasePassword);
+      //db = new DBManager("jdbc:mysql://localhost:3306/","pupil","com.mysql.jdbc.Driver","pupil","pupil");
     }
     catch(SQLException e)
     {
@@ -691,6 +700,11 @@ public class Pupil extends UtilityServlet
   public void destroy()
   {
     db.quit();
+  }
+
+  public DBManager getDBManager()
+  {
+    return db;
   }
   
   public static Pupil getInstance()
