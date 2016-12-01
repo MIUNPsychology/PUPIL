@@ -25,11 +25,9 @@ You can use OpenJDK, which is available via apt. Run:
     sudo apt-get install openjdk-8-jdk
 
 If you know you have another JDK/JRE installed (if you don't know, it's
-unlikely), you might want to run:
+unlikely. In most cases the following step is unnecessary), you might want to run:
 
     sudo update-java-alternatives
-
-But this step is probably unnecessary.
 
 ### Installing on windows
 
@@ -41,14 +39,11 @@ Note that you want "JDK", not "JRE". It's superfluous to get the
 big package with NetBeans included, but if you want to play around
 with it, it doesn't hurt. 
 
+You can accept all the default suggestions in the installer and just click "next".
+
 ## Install Tomcat
 
-If you need to download tomcat manually (which you will need for
-windows), you can find it here:
-
-http://tomcat.apache.org/download-80.cgi
-
-It is possible a later version than 8.0 will work, but 8.0 is 
+You will want to download tomcat 8.x. It is possible a later version than 8.0 will work, but 8.0 is 
 known to work.
 
 ### Installing on ubuntu
@@ -61,12 +56,21 @@ This should get Tomcat up and running on port 8080.
 
 ### Installing on Windows
 
-The documentation on how to get Tomcat working on windows is
-available here:
+Download tomcat from:
 
-http://tomcat.apache.org/tomcat-8.0-doc/setup.html#Windows
+http://tomcat.apache.org/download-80.cgi
 
-## Install MySQL
+The installation steps are in summary as follows:
+
+* Download the "32/64 bit windows service installer" from the download page
+* Execute and install
+    * On the "choose components" step, also check "host manager"
+    * On the "configuration" step, be sure to enter user/password for an administrator account, and remember these
+* On the last step you can choose to start the service. In the future you will have a "monitor tomcat" entry on your start menu, where you can start and stop tomcat.
+
+Unless you changed something, tomcat should now run on port 8080.
+
+## Install MySQL and create a database
 
 Currently PUPIL is written for MySQL, but it's possible that, 
 for example, MariaDB is compatible enough to work anyway. But out of 
@@ -82,38 +86,55 @@ MySQL is available via apt. Run:
 but you will need to remember what root password you are setting for 
 it. 
 
+Start a mysql root prompt:
+
+    mysql -u root -p mysql
+
+Then, on the prompt, run:
+
+    CREATE DATABASE pupil;
+    GRANT ALL ON pupil.* TO pupil@'localhost' IDENTIFIED by 'pupil';
+    FLUSH PRIVILEGES;
+
+This is an example only, for creating a database called "pupil",
+with a user "pupil" that has a password "pupil". This is how the default
+configuration is written, so if you only want to test things on your 
+own computer this might suffice. But for production environments you 
+should be more creative with at least the password. 
+
+
 ### Installing on windows
 
 MySQL is available for download at:
 
 http://dev.mysql.com/downloads/mysql/
 
-The installation instructions are available here:
+You want the windows msi installer. Ignore the nag about registering (there is a link for proceeding with the download at the bottom of the page). 
 
-http://dev.mysql.com/doc/refman/5.7/en/windows-installation.html
+In the installer:
 
-## Create a mysql database
+* For type, choose "Custom".
+* On "Select products and features", move almost all components from the right side to the left (there is a green arrow to click). On the right side you should only have:
+    * MySQL server
+    * MySQL workbench
+    * MySQL utilities
+* On "type and networking", you can accept the defaults unless you know what you are doing. If you intend the installation to be for a production server, change "Config type" to "Server machine"
+* On "accounts and roles":
+    * Enter and remember an administrative password
+    * Add a new user "pupil" and set (and remember) a password for that user
+* For the rest of the steps in the installer, you can accept the defaults
 
-You need to create a database and configure access to it. You can choose
-database name, database user and database password freely, but remember
-these. You will need to insert them in a configuration file later.
+You should now start "mysql workbench" (the installer allows you to do this as the final step). In the workbench do the following
 
-The following is an example only, for creating a database called "pupil",
-with a user "pupil" that has a password "pupil". This is how the default
-configuration is written, so if you only want to test things on your 
-own computer this might suffice. But for production environments you 
-should be more creative with at least the password. 
-
-Start a mysql root prompt (see mysql docs on how to do this). Then run:
-
-    CREATE DATABASE pupil;
-    GRANT ALL ON pupil.* TO pupil@'localhost' IDENTIFIED by 'pupil';
-    FLUSH PRIVILEGES;
+* Click "local instance", and log in as admin
+* Click "create new schema in the connected instance" (it's the fourth icon from the left in the toolbar) (for some reason "database" is called "schema" in mysql workbench, but "database" on a mysql prompt... Why this is so, I guess you'll have to ask a mysql dev)
+* Enter "pupil" as its name, then click "apply", "apply" and "finish". 
+* You should now have a "pupil" entry under "schemas" in the bottom of the hierarchy to the left in the window. 
+* Right-click the "pupil" schema and select "set as default". You will get no feedback, but the entry should now be listed boldfaced.
 
 ## Populate the database
 
-In the SETUP directory, there is a file called setup_db.sql. This 
-contains the basic definition for the initial database. 
+In the SETUP directory, there is a file called setup_db.sql. This contains the basic definition for the initial database. 
 
 ### Running the setup script on ubuntu
 
@@ -127,7 +148,11 @@ of your database)
 
 ### Running the setup script on windows
 
-to be written
+In mysql workbench:
+
+* open the "file" menu and "open sql script". 
+* Browse to the "setup_db.sql" script in the SETUP folder
+* Execute the script (it's the icon looking like a lightning bolt)
 
 ## Edit the webapp configuration
 
@@ -153,7 +178,15 @@ On ubuntu the file should end up as /etc/tomcat8/Catalina/localhost/pupil.xml.
 
 ### Installing the config on windows
 
-to be written
+On windows the file should (probably) end up as C:\Program Files\Apache Software Foundation\Tomcat 8.5\conf\Catalina\localhost\pupil.xml
+
+... but this will depend on where you installed tomcat, and might look slightly different depending on windows version and locale. 
+
+So the basic steps will (for example) be:
+
+* Rename the pupil.xml.sample file to pupil.xml
+* Edit it with an appropriate text editor (wordpad should work, notepad might run into trouble with line endings)
+* change docBase to point at where you unzipped the zip file, for example "c:\PUPIL"
 
 ## Starting PUPIL
 
@@ -163,9 +196,8 @@ available at:
 
 http://127.0.0.1:8080/manager/html
 
-The login and password for the manager will need to be set in the Tomcat
-configuration before you can access this page. You can find instructions
-on how to do this at
+On windows you will already have set login and password for the manager in a configuration step above.
+On ubuntu, you will need to edit /etc/tomcat8/tomcat-users.xml to add a login for the manager, see
 
 https://tomcat.apache.org/tomcat-8.0-doc/manager-howto.html#Configuring_Manager_Application_Access
 
