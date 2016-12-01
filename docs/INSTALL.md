@@ -227,7 +227,12 @@ You should now have a configured system. Navigate to:
 
 http://127.0.0.1/pupil
 
-.. and login as a teacher. 
+Here you can choose to login as a student (an example student "test" with 
+password "test" was automatically created by the setup script). 
+
+Or you can login as the teacher you created above.
+
+Both will have access to a very crude example project "visual1".
 
 ## From here
 
