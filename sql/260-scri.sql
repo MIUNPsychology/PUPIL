@@ -10,3 +10,14 @@ CREATE TABLE scri (
   FOREIGN KEY (category_id) REFERENCES category(category_id) ON DELETE CASCADE
 ) ENGINE=INNODB;
 
+INSERT INTO scri(scene_id,category_id,position,keychar) VALUES(1,1,1,1);
+INSERT INTO scri(scene_id,category_id,position,keychar) VALUES(1,1,2,2);
+INSERT INTO scri(scene_id,category_id,position,keychar) VALUES(1,1,3,3);
+INSERT INTO scri(scene_id,category_id,position,keychar) VALUES(1,2,4,4);
+
+INSERT INTO scri(scene_id,category_id,position,keychar) VALUES(2,2,1,1);
+INSERT INTO scri(scene_id,category_id,position,keychar) VALUES(2,1,2,2);
+INSERT INTO scri(scene_id,category_id,position,keychar) VALUES(2,1,3,3);
+INSERT INTO scri(scene_id,category_id,position,keychar) VALUES(2,1,4,4);
+
+

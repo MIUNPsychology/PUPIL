@@ -16,3 +16,7 @@ CREATE TABLE scene (
 ) ENGINE=INNODB;
 
 
+INSERT INTO scene(scenetype_id,pattern_id,project_id,timeout,description,lead,correctkey) VALUES(2,7,1,0,'scene01','',4);
+INSERT INTO scene(scenetype_id,pattern_id,project_id,timeout,description,lead,correctkey) VALUES(2,7,1,0,'scene02','',1);
+
+

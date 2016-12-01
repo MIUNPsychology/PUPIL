@@ -7,3 +7,6 @@ CREATE TABLE sceneblock (
   FOREIGN KEY (scene_id) REFERENCES scene(scene_id) ON DELETE CASCADE
 ) ENGINE=INNODB;
 
+INSERT INTO sceneblock(block_id,scene_id) VALUES(1,1);
+INSERT INTO sceneblock(block_id,scene_id) VALUES(1,2);
+

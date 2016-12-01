@@ -7,3 +7,6 @@ CREATE TABLE scriscene (
   FOREIGN KEY (scene_id) REFERENCES scene(scene_id) ON DELETE CASCADE
 ) ENGINE=INNODB;
 
+INSERT INTO scriscene(scene_id,noduplicates) VALUES(1,1);
+INSERT INTO scriscene(scene_id,noduplicates) VALUES(2,1);
+

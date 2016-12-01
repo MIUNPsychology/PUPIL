@@ -127,7 +127,7 @@
   </target>
 
   <target name="copyimages" depends="init">
-    <copy todir="${distdir}/images">
+    <copy todir="${flashdist}/images">
       <fileset dir="images" />
     </copy>
   </target>
@@ -137,7 +137,7 @@
     <mkdir dir="${build}"/>    
     <mkdir dir="${flashdist}"/>    
     <mkdir dir="${setupdist}"/>    
-    <mkdir dir="${distdir}/images"/>    
+    <mkdir dir="${flashdist}/images"/>    
   </target>
 
   <target name="clean">
