@@ -6,8 +6,8 @@ in the [INSTALL.md](INSTALL.md) file. So take a look in that first.
 To build PUPIL you need to download the dependencies and use "ant"
 to compile the various components. 
 
-Each build step will create files indirectory dist/PUPIL. This is a web 
-application suitable for (for example) Tomcat. 
+Each build step will create files in the directory dist/PUPIL. This 
+is a web application suitable for (for example) Tomcat. 
 
 ## Requirements
 
