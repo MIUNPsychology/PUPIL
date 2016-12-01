@@ -32,7 +32,6 @@ CREATE TABLE project (
   FOREIGN KEY (teacher_id) REFERENCES teacher(teacher_id) ON DELETE CASCADE
 ) ENGINE=INNODB;
 
-INSERT INTO project(teacher_id,name,description) VALUES(1,'test','test project');
 INSERT INTO project(teacher_id,name,description,displaywelcome,displaythanks,maxwidth,maxheight) VALUES(1,'visual1','my visual search project',1,1,600,500);
 
 UPDATE project SET welcometop = 'Use numeric keys to select the image which does not fit' WHERE name = 'visual1';

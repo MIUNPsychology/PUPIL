@@ -6,5 +6,5 @@ CREATE TABLE student (
   pass VARCHAR(80) NOT NULL
 ) ENGINE=INNODB;
 
-INSERT INTO student(login, pass) VALUES('test','test');
+-- INSERT INTO student(login, pass) VALUES('test','test');
 
