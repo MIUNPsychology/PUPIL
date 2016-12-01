@@ -1,10 +1,10 @@
 # PUPIL
 
-PUPIL
+(short description of PUPIL to be inserted here)
 
 ## Downloading PUPIL
 
-There are PUPIL binaries available at (MIUN?)
+There are PUPIL binaries available at http://www.jwp.se/files/pupil/
 
 ## Installing PUPIL
 
