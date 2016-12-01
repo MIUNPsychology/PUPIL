@@ -10,6 +10,7 @@ There are some things which would really improve the user experience too:
 
 * Ability to batch import a comma-separated values with students 
 * Ability to batch add student permissions to an experiment
+* Ability to import/export entire projects
 
 Or, in the best of worlds:
 
