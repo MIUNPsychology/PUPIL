@@ -125,12 +125,19 @@
       <fileset dir="docs" includes="*.pdf" />
     </copy>
   </target>
- 
+
+  <target name="copyimages" depends="init">
+    <copy todir="${distdir}/images">
+      <fileset dir="images" />
+    </copy>
+  </target>
+  
   <target name="init">
     <tstamp/>
     <mkdir dir="${build}"/>    
     <mkdir dir="${flashdist}"/>    
     <mkdir dir="${setupdist}"/>    
+    <mkdir dir="${distdir}/images"/>    
   </target>
 
   <target name="clean">
@@ -173,7 +180,7 @@
 
   <!-- ******** BUILD ******* -->
 
-  <target name="dist" depends="copydeps,pupil,webapp-static,flash-static,mergesql,copydocs">
+  <target name="dist" depends="copydeps,pupil,webapp-static,flash-static,mergesql,copydocs,copyimages">
     <zip destfile="dist/PUPIL-${ziptime}.zip" basedir="dist" excludes="*.zip,.keep" />
   </target>
 
