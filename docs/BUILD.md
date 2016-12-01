@@ -1,5 +1,8 @@
 # Building PUPIL
 
+You will most likely want to install the same tools as are listed 
+in the [INSTALL.md](INSTALL.md) file. So take a look in that first.
+
 To build PUPIL you need to download the dependencies and use "ant"
 to compile the various components. 
 
@@ -12,7 +15,7 @@ The frontend is written as a Flex 3.x flash application. To build these
 things, you need the Flex SDK from adobe. At the time of writing this, 
 you can find the SDK at 
 
-    http://www.adobe.com/devnet/flex/flex-sdk-download.html
+http://www.adobe.com/devnet/flex/flex-sdk-download.html
 
 At the time of writing this, only flex 3.x works. If you feel adventurous
 you could try a later SDK version.
