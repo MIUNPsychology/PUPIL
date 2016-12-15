@@ -2,6 +2,8 @@
 
 (short description of PUPIL to be inserted here)
 
+Most of the documentation is available in [the wiki](https://github.com/MIUNPsychology/PUPIL/wiki)
+
 ## Downloading PUPIL
 
 There are PUPIL binaries available at http://www.jwp.se/files/pupil/
