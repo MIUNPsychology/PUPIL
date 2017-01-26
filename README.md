@@ -1,6 +1,10 @@
 # PUPIL
 
-(short description of PUPIL to be inserted here)
+PUPIL ("Pedagogiskt Utvecklings-Project I Labbet", approximately "pedagogical development
+project for the laboratory") is a teaching tool intended to teach experimental psychology to students
+within distance education. The system is completely browser based, and does not require and
+locally installed software, neither for the person designing the experiments nor the students running
+the experiments.
 
 Most of the documentation is available in [the wiki](https://github.com/MIUNPsychology/PUPIL/wiki)
 
