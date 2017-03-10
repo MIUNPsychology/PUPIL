@@ -19,7 +19,6 @@ Or, in the best of worlds:
 ## Docs
 
 * Include license file in build
-* Convert the current PDF-based documentation to wiki format (probably on github)
 
 ## Deprecated functionality 
 
