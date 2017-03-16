@@ -492,10 +492,11 @@ public class Pupil extends UtilityServlet
       
       Hashtable<Object,String> env = new Hashtable<Object,String>();
       env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
-      env.put(Context.PROVIDER_URL, "ldap://pluto2.miun.se:389");
 
+      // TODO: Read from config or remove entirely
+      env.put(Context.PROVIDER_URL, "LDAP_PROVIDER_URL");
       env.put(Context.SECURITY_AUTHENTICATION, "simple");
-      env.put(Context.SECURITY_PRINCIPAL, "uid=" + login + ", ou=people, o=student.mh.se, o=mh.se");
+      env.put(Context.SECURITY_PRINCIPAL, "uid=" + login + ", ou=people, o=READ_FROM_CONFIG, o=READ_FROM_CONFIG");
       env.put(Context.SECURITY_CREDENTIALS, pass);
 
       try

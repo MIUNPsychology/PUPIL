@@ -44,11 +44,12 @@ public class cmd_importlist extends Command
 
     Connection conn = null;
 
-    String url = "jdbc:mysql://makemake.miun.se:3306/";
-    String dbName = "sic";
+    // TODO: Remove or read from config
+    String url = "EXTERNAL_JDBC_URI";
+    String dbName = "EXTERNAL_JDBC_DB";
     String driver = "com.mysql.jdbc.Driver";
-    String userName = "nlostapp"; 
-    String password = "SYdfQRMXW";
+    String userName = "EXTERNAL_JDBC_USER"; 
+    String password = "EXTERNAL_JDBC_PASS";
 
     try 
     {

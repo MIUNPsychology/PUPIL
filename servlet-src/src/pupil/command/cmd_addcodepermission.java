@@ -47,11 +47,12 @@ public class cmd_addcodepermission extends Command
 
     Connection conn = null;
 
-    String url = "jdbc:mysql://makemake.miun.se:3306/";
-    String dbName = "sic";
+    // TODO: Read from config or remove entirely
+    String url = "EXTERNAL_JDBC_URI";
+    String dbName = "EXTERNAL_JDBC_DB";
     String driver = "com.mysql.jdbc.Driver";
-    String userName = "nlostapp"; 
-    String password = "SYdfQRMXW";
+    String userName = "EXTERNAL_JDBC_USER"; 
+    String password = "EXTERNAL_JDBC_PASS";
 
     Vector<String> frommiun = new Vector<String>();
 
