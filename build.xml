@@ -103,6 +103,9 @@
     <copy todir="${distdir}/flash">
       <fileset dir="servlet-src/jsp" includes="*.jsp" />
     </copy>
+    <copy todir="${distdir}/sql">
+      <fileset dir="servlet-src/sql-static" includes="*.sql" />
+    </copy>
     <move file="${distdir}/flash/admin.jsp" tofile="${distdir}/admin.jsp" />
 
   </target>
@@ -138,6 +141,7 @@
     <mkdir dir="${flashdist}"/>    
     <mkdir dir="${setupdist}"/>    
     <mkdir dir="${flashdist}/images"/>    
+    <mkdir dir="${distdir}/sql"/>
   </target>
 
   <target name="clean">

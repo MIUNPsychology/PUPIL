@@ -119,7 +119,7 @@ public class SQL extends UtilityServlet
         }
         else
         {
-          rib.println("File does not exist");
+          rib.println("File does not exist" + f.toString());
         }
       }
     }
@@ -160,13 +160,22 @@ public class SQL extends UtilityServlet
 
     sqldir = new File(sib.getPhysicalPath(),"sql");
 
+    ServletContext context = sib.getServletContext();
+
+    String databaseName = context.getInitParameter("databaseName");
+    String databaseUser = context.getInitParameter("databaseUser");
+    String databasePassword = context.getInitParameter("databasePassword");
+    String databaseUrl = context.getInitParameter("databaseUrl");
+    String databaseDriver = context.getInitParameter("databaseDriver");
+
     try
     {
-      db = new DBManager("jdbc:mysql://localhost:3306/","pupil","com.mysql.jdbc.Driver","pupil","pupil");
+      db = new DBManager(databaseUrl,databaseName,databaseDriver,databaseUser,databasePassword);
+      //db = new DBManager("jdbc:mysql://localhost:3306/","pupil","com.mysql.jdbc.Driver","pupil","pupil");
     }
     catch(SQLException e)
     {
-      log.error("Could not set up DB connection: " + e.getMessage(),e);
+      log.debug("Could not set up DB connection: " + e.getMessage(),e);
     }
 
     log.trace("Leave init()");
