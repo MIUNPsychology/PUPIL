@@ -10,7 +10,7 @@ Most of the documentation is available in [the wiki](https://github.com/MIUNPsyc
 
 ## Downloading PUPIL
 
-There are PUPIL binaries available at http://www.jwp.se/files/pupil/
+There are PUPIL binaries available at [download PUPIL](https://www.miun.se/contentassets/0a97623d357f49e797510ae6a271aad2/pupil-20170316-1050.zip)
 
 ## Installing PUPIL
 
